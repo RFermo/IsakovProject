@@ -1,13 +1,183 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Google Fonts imports */
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,600;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Works on Firefox */
+
+  * {
+    scrollbar-color: darkslategray lavenderblush;
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: lavenderblush;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: darkslategray;
+    border-radius: 20px;
+  }
+
+  /* Sliding divs animation */
+
+  #slider {
+    transform: translateX(-130%);
+    -webkit-transform: translateX(-130%);
+  }
+
+  .slide-in {
+    animation: slide-in 1s forwards;
+    -webkit-animation: slide-in 1s forwards;
+  }
+
+  @keyframes slide-in {
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @-webkit-keyframes slide-in {
+    100% {
+      -webkit-transform: translateX(0%);
+    }
+  }
+
+  /* Bouncing arrow to the left */
+
+  .left-bounce {
+    animation: bounce-left 1s infinite;
+  }
+
+  @keyframes bounce-left {
+    0%,
+    100% {
+      transform: translateX(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  /* Bouncing arrow to the right */
+
+  .right-bounce {
+    animation: bounce-right 1s infinite;
+  }
+
+  @keyframes bounce-right {
+    0%,
+    100% {
+      transform: translateX(25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  /* Link getting filled from left to right */
+
+  .fill-link {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+
+  .fill-link:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    content: "";
+    z-index: -1;
+    background: rgba(31, 41, 55, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    will-change: width;
+  }
+
+  .fill-link:hover:after {
+    width: 100%;
+  }
+
+  *:after {
+    outline: none;
+  }
+
+  /* No scrollbar present for albums */
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Change color of vertical timeline line */
+
+  .vertical-timeline::before {
+    background-color: rgba(31, 41, 55, 1) !important;
+  }
+
+  /* Change box shadow on timeline elements */
+
+  .vertical-timeline-element-content {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+  }
+
+  /* Set the height of each carousel image to 425px */
+
+  .carousel .slide img {
+    height: 425px;
+  }
+
+  /* Customize caption style */
+
+  .carousel .slide .legend {
+    opacity: 1 !important;
+    background-color: rgba(31, 41, 55, 1) !important;
+    font-size: 1rem !important;
+    line-height: 1.5rem;
+  }
+
+  /* Media query for setting height of images on smaller devices and styling captions. The JIT compiler for Tailwind would have prevented me from doing this due to !class syntax. */
+
+  @media only screen and (max-width: 639px) {
+    .carousel .slide img {
+      height: 250px;
+    }
+
+    .carousel .slide .legend {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+    }
+  }
+
+  /* This prevents the "alt" text from showing up when the album image has not been fetched from Spotify API. */
+
+  img {
+    color: transparent;
+  }
 }
