@@ -9,27 +9,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* Works on Firefox */
-
-  * {
-    scrollbar-color: darkslategray lavenderblush;
-  }
-
-  /* Works on Chrome, Edge, and Safari */
-
-  ::-webkit-scrollbar {
-    width: 15px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: lavenderblush;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: darkslategray;
-    border-radius: 20px;
-  }
-
   /* Sliding divs animation */
 
   #slider {
@@ -123,7 +102,7 @@
     outline: none;
   }
 
-  /* No scrollbar present for albums */
+  /* No scrollbar present for albums on smaller devices */
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -132,47 +111,6 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-
-  /* Change color of vertical timeline line */
-
-  .vertical-timeline::before {
-    background-color: rgba(31, 41, 55, 1) !important;
-  }
-
-  /* Change box shadow on timeline elements */
-
-  .vertical-timeline-element-content {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
-  }
-
-  /* Set the height of each carousel image to 425px */
-
-  .carousel .slide img {
-    height: 425px;
-  }
-
-  /* Customize caption style */
-
-  .carousel .slide .legend {
-    opacity: 1 !important;
-    background-color: rgba(31, 41, 55, 1) !important;
-    font-size: 1rem !important;
-    line-height: 1.5rem;
-  }
-
-  /* Media query for setting height of images on smaller devices and styling captions. The JIT compiler for Tailwind would have prevented me from doing this due to !class syntax. */
-
-  @media only screen and (max-width: 639px) {
-    .carousel .slide img {
-      height: 250px;
-    }
-
-    .carousel .slide .legend {
-      font-size: 0.875rem !important;
-      line-height: 1.25rem !important;
-    }
   }
 
   /* This prevents the "alt" text from showing up when the album image has not been fetched from Spotify API. */
