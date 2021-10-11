@@ -9,10 +9,10 @@ const Song = (props) => {
             <div className="flex flex-col">
                 <div className="flex flex-col space-y-7 xl:flex-row xl:space-y-0 justify-between items-center py-8">
                     <div>
-                        <h2 className="text-gray-200 text-2xl font-librefranklin font-semibold">
+                        <h2 className="text-gray-200 text-2xl font-librefranklin font-semibold text-center xl:text-left">
                             {props.trackNum}. <span className="pl-1.5">{props.name}</span>
                         </h2>
-                        <p className="text-gray-200 font-librefranklin pt-1">Duration: {props.trackDuration}</p>
+                        <p className="text-gray-200 font-librefranklin pt-2 text-center xl:text-left">Duration: {props.trackDuration}</p>
                     </div>
 
                     <div>
